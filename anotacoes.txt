@@ -1,0 +1,37 @@
+1. npm init adonis-ts-app@latest first-app-adonis 
+-> Dessa forma o projeto vai ser inicializado com typescript
+
+2. Para o nosso caso vamos selecionar a opção "api", o nome do projeto vai ser 
+first-app-adonis e vamos escolher true para setup eslint e prettier.
+
+3. cd first-app-adonis e depois node ace serve --watch
+O comando "serve" inicia o servidor HTTP e executa uma compilação na memória de TypeScript para JavaScript.
+O sinalizador "--watch" destina-se a observar o sistema de arquivos em busca de alterações e reiniciar o 
+servidor automaticamente, de forma similar ao nodemon.
+Por padrão, o servidor inicia na porta 3333 (definida dentro do arquivo .env). Você pode visualizar a 
+página de boas-vindas visitando: http://localhost:3333 .
+
+4. npm i @adonisjs/lucid
+
+5. node ace configure @adonisjs/lucid, vamos escolher o SQLite e selecionar a opção In the terminal.
+A opção "In the terminal" vai mostrar no terminal as instruções que precisamos fazer, como por exemplo
+configurar senha e host do banco, caso nosso banco fosse diferente do SQLite que é um banco em memória.
+
+6. Configurar o cors. Para isso vamos em config/cors.ts e trocar o "enabled: false" por 
+"enabled: (request) => request.url().startsWith('/api')", dessa forma estamos habilitando o cors para que 
+receba qualquer chamada que comece com /api.
+
+7. Para adicionarmos o prefixo /api devemos criar um Route.group().prefix("/api"). Ver arquivo de routes.
+
+8. Para criar models usamos o seguinte comando:
+node ace make:model Moment -m 
+A flag -m diz para o Adonis criar uma migration.
+OBS: Esse comando acima só está disponível pq instalamos o lucid no Adonis.
+Observe que foi criado o arquivo Moment.ts dentro de "app/Models"
+
+9. As migrations são responsáveis por refletir corretamente nosso Model no banco de dados. As migrations ficam em 
+database -> migrations. Observe que o nome da tabela vai ser criada com o plural do nome que escolhemos no comando 
+acima.  
+
+10. O comando a seguir vai rodar as migrations que estiverem pendentes:
+node ace migration:run
