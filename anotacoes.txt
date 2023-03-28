@@ -35,3 +35,21 @@ acima.
 
 10. O comando a seguir vai rodar as migrations que estiverem pendentes:
 node ace migration:run
+Após esse comando veremos na pasta tmp o arquivo db.sqlite3. Para conseguirmos ler esse arquivo podemos instalar a 
+extensão do vscode chamada sqlite viewer.
+
+11. Agora vamos criar o controller, que é onde as funções e regras da aplicação irão ficar.
+node ace make:controller Moment
+O arquivo MomentsController.ts(Note que Moments está no plural, esse é o padrão usado pelo Adonis) será criado dentro 
+de app -> Controllers -> Http 
+
+12. O comando a seguir pode ser usado para listar as rotas da aplicação:
+node ace list:routes
+
+13. npm i uuid
+
+14. node ace make:model Comment -m
+
+15. node ace migration:run
+
+16. node ace make:controller Comment
